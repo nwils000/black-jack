@@ -3,13 +3,13 @@ import random
 def show_random_suits_first_card(deck):
     randomNumber = random.randint(1, 4)
     if randomNumber == 1:
-        return deck["hearts"].pop(0)
+        return deck["hearts"].pop(0), "Hearts"
     elif randomNumber == 2:
-        return deck["diamonds"].pop(0)
+        return deck["diamonds"].pop(0), "Diamonds"
     elif randomNumber == 3:
-        return deck["spades"].pop(0)
+        return deck["spades"].pop(0), "Spades"
     elif randomNumber == 4:
-        return deck["clubs"].pop(0)
+        return deck["clubs"].pop(0), "Clubs"
     
 def checkIfBust(cards_total):
     if cards_total > 21:
@@ -38,14 +38,14 @@ class Hand:
         
 
     def hit(self, who=""):        
-        popped_card = show_random_suits_first_card(self.deck)
+        popped_card, suit = show_random_suits_first_card(self.deck)
 
         if popped_card == 11:
-            self.cards_total += popped_card - 1
+            self.cards_total += 10
         elif popped_card == 12:
-            self.cards_total += popped_card - 2
+            self.cards_total += 10
         elif popped_card == 13:
-            self.cards_total += popped_card - 3
+            self.cards_total += 10
         else:
             self.cards_total += popped_card
         
@@ -56,21 +56,14 @@ class Hand:
             elif checkIfBust(self.cards_total) == "BLACKJACK!":
                 print("BLACKJACK! Collect your winning!")
                 quit()
-            
-        if who == "dealer":
-            if self.cards_total > 17:
-                if checkIfBust(self.cards_total) == "BUST!":
-                    print(f"YOU WIN! Dealer busted with {self.cards_total}")
-                    quit()
-                elif checkIfBust(self.cards_total) == "BLACKJACK!":
-                    print("Dealer got blackjack! Good luck next time")
-                    quit()
-                else:
-                    return "compare"             
-            else:
-                self.hit("dealer")
-
-        return popped_card
+        if popped_card == 11:
+            return f"Jack of {suit}"
+        elif popped_card == 12:
+            return f"Queen of {suit}"
+        elif popped_card == 13:
+            return f"King of {suit}"
+        else:
+            return f"{popped_card} of {suit}"
 
 dealer = Hand()
 player = Hand()
@@ -84,25 +77,33 @@ def handleNextHit(did_they_hit):
         have_they_hit = input("hit? (Yes or No) ")
         handleNextHit(have_they_hit)
     else:
-        print(dealer.hit("dealer"))
-        if dealer.hit("dealer") == "compare":
-            if(player.cards_total > dealer.cards_total):
+        while dealer.cards_total < 17:
+            dealer.hit()
+        if dealer.cards_total >= 17:
+            if dealer.cards_total > 21:
+                print(f"YOU WIN! Dealer busted with {dealer.cards_total}")
+            elif player.cards_total > 21:
+                print(f"YOU LOSE! You busted with {player.cards_total}")
+            elif dealer.cards_total == 21 and player.cards_total < 21:
+                print(f"YOU LOSE! The dealer got blackjack and you had {player.cards_total}")
+            elif player.cards_total > dealer.cards_total:
                 print(f"YOU WIN! Dealer had {dealer.cards_total}, and you had {player.cards_total}")
-            if(player.cards_total < dealer.cards_total):
+            elif player.cards_total < dealer.cards_total:
                 print(f"YOU LOSE! Dealer had {dealer.cards_total}, and you had {player.cards_total}")
             else:
-                print(f"Sorry, its a tie... Dealer had {dealer.cards_total}, and you had {player.cards_total}")
-
+                print(f"Sorry, it's a tie... Dealer had {dealer.cards_total}, and you had {player.cards_total}")
+        else:
+            dealer.hit()
 
 def startGame(dealer, player):
-    print("Dealers card: ", dealer.hit())
+    print(f"The dealer has a {dealer.hit()}")
 
-    print("Your first card is: ", player.hit())
-    print("Your second card is: ", player.hit())
+    print(f"You have a {player.hit()} and a {player.hit()}")
     
     have_they_hit = input("hit? (Yes or No) ")
     handleNextHit(have_they_hit)
 
 print("Lets play some Blackjack!")
 
+# Game starts here
 startGame(dealer, player)
