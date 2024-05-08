@@ -31,39 +31,21 @@ class Hand:
     def hit(self):
         return show_random_suits_first_card(self.deck)
     
-currentPlayer = Hand()
+def startGame(dealer, player):
+    dealers_card = []
+    players_cards = []
+
+    dealers_card.append(dealer.hit())
+
+    players_cards.append(player.hit())
+    players_cards.append(player.hit())
+
+    return {
+        "dealers_cards": dealers_card,
+        "players_cards": players_cards
+    }
 
 dealer = Hand()
+player = Hand()
 
-print("fulldeck", dealer.deck)
-print("currentCard", dealer.hit())
-print("fulldeck", dealer.deck)
-print("currentCard", dealer.hit())
-print("fulldeck", dealer.deck)
-print("currentCard", dealer.hit())
-print("fulldeck", dealer.deck)
-print("currentCard", dealer.hit())
-print("fulldeck", dealer.deck)
-print("currentCard", dealer.hit())
-print("fulldeck", dealer.deck)
-print("currentCard", dealer.hit())
-print("fulldeck", dealer.deck)
-print("currentCard", dealer.hit())
-print("fulldeck", dealer.deck)
-print("currentCard", dealer.hit())
-print("fulldeck", dealer.deck)
-print("currentCard", dealer.hit())
-print("fulldeck", dealer.deck)
-print("currentCard", dealer.hit())
-print("fulldeck", dealer.deck)
-print("currentCard", dealer.hit())
-print("fulldeck", dealer.deck)
-print("currentCard", dealer.hit())
-print("fulldeck", dealer.deck)
-print("currentCard", dealer.hit())
-print("fulldeck", dealer.deck)
-print("currentCard", dealer.hit())
-print("fulldeck", dealer.deck)
-print("currentCard", dealer.hit())
-print("fulldeck", dealer.deck)
-print("currentCard", dealer.hit())
+print(startGame(dealer, player))
