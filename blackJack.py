@@ -1,30 +1,17 @@
 import random
 
-# deck = {
-#     "hearts": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13],
-#     "diamonds": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13],
-#     "spades": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13],
-#     "clubs": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13],
-# }
-
-# def shuffle_deck():
-#     random.shuffle(deck["hearts"])
-#     random.shuffle(deck["diamonds"])
-#     random.shuffle(deck["spades"])
-#     random.shuffle(deck["clubs"])
-
-# shuffle_deck()
-
-# print(deck)
+def show_random_suits_first_card(deck):
+    randomNumber = random.randint(1, 4)
+    if randomNumber == 1:
+        return deck["hearts"].pop(0)
+    elif randomNumber == 2:
+        return deck["diamonds"].pop(0)
+    elif randomNumber == 3:
+        return deck["spades"].pop(0)
+    elif randomNumber == 4:
+        return deck["clubs"].pop(0)
 
 class Hand:
-    deck = {
-        "hearts": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13],
-        "diamonds": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13],
-        "spades": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13],
-        "clubs": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13],
-    }
-
     def shuffle_deck(self):
         random.shuffle(self.deck["hearts"])
         random.shuffle(self.deck["diamonds"])
@@ -32,15 +19,51 @@ class Hand:
         random.shuffle(self.deck["clubs"])
 
     def __init__(self):
+        self.deck = {
+        "hearts": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13],
+        "diamonds": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13],
+        "spades": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13],
+        "clubs": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13],
+        }
         self.shuffle_deck()
-        self.deck = self.deck
+        
 
-    def shuffle_the_deck(self):
-        self.shuffle_deck()
+    def hit(self):
+        return show_random_suits_first_card(self.deck)
     
 currentPlayer = Hand()
-print("current", currentPlayer.deck)
 
 dealer = Hand()
-print("other", currentPlayer.deck)
 
+print("fulldeck", dealer.deck)
+print("currentCard", dealer.hit())
+print("fulldeck", dealer.deck)
+print("currentCard", dealer.hit())
+print("fulldeck", dealer.deck)
+print("currentCard", dealer.hit())
+print("fulldeck", dealer.deck)
+print("currentCard", dealer.hit())
+print("fulldeck", dealer.deck)
+print("currentCard", dealer.hit())
+print("fulldeck", dealer.deck)
+print("currentCard", dealer.hit())
+print("fulldeck", dealer.deck)
+print("currentCard", dealer.hit())
+print("fulldeck", dealer.deck)
+print("currentCard", dealer.hit())
+print("fulldeck", dealer.deck)
+print("currentCard", dealer.hit())
+print("fulldeck", dealer.deck)
+print("currentCard", dealer.hit())
+print("fulldeck", dealer.deck)
+print("currentCard", dealer.hit())
+print("fulldeck", dealer.deck)
+print("currentCard", dealer.hit())
+print("fulldeck", dealer.deck)
+print("currentCard", dealer.hit())
+print("fulldeck", dealer.deck)
+print("currentCard", dealer.hit())
+print("fulldeck", dealer.deck)
+print("currentCard", dealer.hit())
+print("fulldeck", dealer.deck)
+print("currentCard", dealer.hit())
