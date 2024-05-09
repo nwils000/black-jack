@@ -51,10 +51,10 @@ class Hand:
         
         if who == "player":
             if checkIfBust(self.cards_total) == "BUST!":
-                print(f"BUST! You got {self.cards_total}... loser")
+                print(f"BUST! You drew a {popped_card} of {suit} bringing your total to {self.cards_total}... loser")
                 quit()
             elif checkIfBust(self.cards_total) == "BLACKJACK!":
-                print("BLACKJACK! Collect your winning!")
+                print("BLACKJACK! Collect your winnings!")
                 quit()
         if popped_card == 11:
             return f"Jack of {suit}"
@@ -72,8 +72,7 @@ have_they_hit = ""
 
 def handleNextHit(did_they_hit):
     if did_they_hit.lower() == "yes":
-        player.hit("player")
-        print("Your current total: ", player.cards_total)
+        print(f"You drew a {player.hit("player")} bringing your total to {player.cards_total}")
         have_they_hit = input("hit? (Yes or No) ")
         handleNextHit(have_they_hit)
     else:
