@@ -48,12 +48,25 @@ class Dealer(Player):
 
 class Game():
     def __init__(self):
-        amount_of_decks_user_wants = input("How many decks do you want to shuffle?")
-        deck = Deck(amount_of_decks_user_wants)
-        deck.shuffle
-        print(deck.cards)
-    
+        self.amount_of_decks = input("How many decks do you want to shuffle?")
+        self.deck = Deck(self.amount_of_decks)
+        self.deck.shuffle()
+        
+        self.players = []
+        self.amount_of_players = input("How many players?")
+        for i in range(1, int(self.amount_of_players) + 1):
+            players_name = input(f"player{i}, whats your name?")
+            players_money = input(f"How much money are you betting?")
+            players_hand = Hand()
+            self.players.append([Player(players_name, players_money, players_hand)])
 
+        self.start_game()
+
+    def start_game(self):
+        print("Starting Game...")
+    
+new_game = Game
+new_game()
     # Ill need to ditribute the deck amongst the amount of players
 
 
