@@ -77,23 +77,22 @@ def handleNextHit(did_they_hit):
         handleNextHit(have_they_hit)
     else:
         while dealer.cards_total < 17:
-            dealer.hit()
-        if dealer.cards_total >= 17:
-            if dealer.cards_total > 21:
-                print(f"YOU WIN! Dealer busted with {dealer.cards_total}")
-            elif player.cards_total > 21:
-                print(f"YOU LOSE! You busted with {player.cards_total}")
-            elif dealer.cards_total == 21 and player.cards_total < 21:
-                print(f"YOU LOSE! The dealer got blackjack and you had {player.cards_total}")
-            elif player.cards_total > dealer.cards_total:
-                print(f"YOU WIN! Dealer had {dealer.cards_total}, and you had {player.cards_total}")
-            elif player.cards_total < dealer.cards_total:
-                print(f"YOU LOSE! Dealer had {dealer.cards_total}, and you had {player.cards_total}")
-            else:
-                print(f"Sorry, it's a tie... Dealer had {dealer.cards_total}, and you had {player.cards_total}")
-        else:
+            if dealer.cards_total >= 17:
+                if dealer.cards_total > 21:
+                    print(f"YOU WIN! Dealer busted with {dealer.cards_total}")
+                elif player.cards_total > 21:
+                    print(f"YOU LOSE! You busted with {player.cards_total}")
+                elif dealer.cards_total == 21 and player.cards_total < 21:
+                    print(f"YOU LOSE! The dealer got blackjack and you had {player.cards_total}")
+                elif player.cards_total > dealer.cards_total:
+                    print(f"YOU WIN! Dealer had {dealer.cards_total}, and you had {player.cards_total}")
+                elif player.cards_total < dealer.cards_total:
+                    print(f"YOU LOSE! Dealer had {dealer.cards_total}, and you had {player.cards_total}")
+                else:
+                    print(f"Sorry, it's a tie... Dealer had {dealer.cards_total}, and you had {player.cards_total}")
             dealer.hit()
 
+ 
 def startGame(dealer, player):
     print(f"The dealer has a {dealer.hit()}")
 
