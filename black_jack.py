@@ -117,7 +117,7 @@ class Game:
     def update_scores(self, round):
         for player in self.players:
             if player not in round.players_who_lost:
-                player.money += int(player.bet) * 2
+                player.money += int(player.bet)
             else:
                 player.money -= int(player.bet)
 
